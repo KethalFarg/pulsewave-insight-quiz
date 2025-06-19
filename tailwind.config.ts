@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,24 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				teal: {
+					DEFAULT: '#2D9DA6',
+					50: '#E6F7F8',
+					100: '#CCF0F2',
+					500: '#2D9DA6',
+					600: '#258A93'
+				},
+				pink: {
+					DEFAULT: '#E91E63',
+					50: '#FCE4EC',
+					100: '#F8BBD9',
+					500: '#E91E63',
+					600: '#D81B60'
 				}
+			},
+			fontFamily: {
+				sans: ['Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +102,22 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'underlineSlide': {
+					'0%': { 
+						transform: 'scaleX(0)',
+						transformOrigin: 'left'
+					},
+					'100%': { 
+						transform: 'scaleX(1)',
+						transformOrigin: 'left'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'underline': 'underlineSlide 1s ease-out forwards'
 			}
 		}
 	},
