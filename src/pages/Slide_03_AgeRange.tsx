@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Slide_03_AgeRange() {
   const [selected, setSelected] = useState("");
@@ -21,9 +22,9 @@ export default function Slide_03_AgeRange() {
       {/* Header */}
       <header className="w-full px-4 py-6">
         <div className="flex items-center justify-between mb-6">
-          <a href="/slide_02_jointselect" className="btn-icon" aria-label="Go back" data-action="back">
+          <Link to="/slide_02_jointselect" className="btn-icon" aria-label="Go back" data-action="back">
             <ArrowLeft size={16} className="text-white" />
-          </a>
+          </Link>
           <h1 className="text-white text-lg font-semibold">History</h1>
           <span className="text-white/80 text-sm font-medium">3&nbsp;of&nbsp;6</span>
         </div>
@@ -58,14 +59,14 @@ export default function Slide_03_AgeRange() {
 
       {/* Nav */}
       <footer className="px-6 py-6 flex justify-end">
-        <a
-          href="/slide_04_pain_duration"
+        <Link
+          to="/slide_04_pain_duration"
           className="btn-primary"
           data-action="next"
           data-next="Slide_04_PainDuration"
         >
           Next
-        </a>
+        </Link>
       </footer>
     </section>
   );
