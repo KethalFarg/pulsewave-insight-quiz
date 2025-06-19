@@ -1,0 +1,168 @@
+# Build the optimized JSON schema as a Python dict
+schema = {
+    "meta": {
+        "version": "1.0.0",
+        "generated": datetime.datetime.now(tz=pytz.timezone("America/New_York")).strftime("%Y-%m-%d %H:%M:%S %Z"),
+        "author": "ChatGPT schema builder"
+    },
+    "design_tokens": {
+        "colorPrimary": "#0D9C95",
+        "colorProgressDone": "#FECA35",
+        "colorProgressTodo": "rgba(255,255,255,0.20)",
+        "radiusLg": "0.75rem",
+        "fontBody": "Inter, sans-serif"
+    },
+    "components": {
+        "answerBtn":  { "class": "answer-btn" },
+        "backBtn":    { "class": "btn-icon",   "action": "back" },
+        "nextBtn":    { "class": "btn-primary","action": "next" },
+        "progressChunk": { "class": "progress-chunk" }
+    },
+    "layout": {
+        "header": {
+            "show_back": True,
+            "show_section_title": True,
+            "show_numeric_progress": True
+        },
+        "progress_bar": {
+            "segments_from": "sections"
+        }
+    },
+    "sections": ["history", "condition", "healthImpact", "priorities"],
+    "dictionaries": {
+        "conditionsByJoint": {
+            "knee": ["Meniscus tear", "Osteoarthritis", "Patellar tendinopathy", "Other"],
+            "elbow": ["Tennis elbow", "Golfer's elbow", "Bursitis", "Other"],
+            "shoulder": ["Rotator cuff tear", "Shoulder impingement", "Frozen shoulder", "Other"],
+            "hip": ["Labral tear", "Hip osteoarthritis", "Bursitis", "Other"],
+            "wrist": ["Carpal tunnel", "TFCC tear", "Tendinitis", "Other"]
+        },
+        "movementsByJoint": {
+            "knee": ["Stairs", "Squats", "Running", "Sitting-to-standing", "Kneeling"],
+            "elbow": ["Lifting", "Gripping", "Throwing", "Typing"],
+            "shoulder": ["Overhead reach", "Throwing", "Lifting", "Sleeping on side", "Push‑ups"],
+            "hip": ["Walking", "Stairs", "Getting in/out of car", "Sleeping on side"],
+            "wrist": ["Typing", "Gripping", "Twisting lids", "Push‑ups"]
+        }
+    },
+    "questions": []
+}
+
+# helper to add question
+def add_question(id_, slide_id, section, index, total, data_key, question_text, qtype,
+                 options=None, range_=None, store_in_report=True, logic=None, visibility_condition=None):
+    q = {
+        "id": id_,
+        "slide_id": slide_id,
+        "section": section,
+        "index": index,
+        "total": total,
+        "data_key": data_key,
+        "question": question_text,
+        "type": qtype,
+        "store_in_report": store_in_report
+    }
+    if options is not None:
+        q["options"] = [{"value": val.lower().replace(" ", "_"), "label": val} for val in options]
+    if range_ is not None:
+        q["range"] = range_
+    if logic is not None:
+        q["logic"] = logic
+    if visibility_condition is not None:
+        q["visibility_condition"] = visibility_condition
+    schema["questions"].append(q)
+
+# History section questions (6)
+add_question("joint_select", "Slide_02_JointSelect", "history", 1, 6, "jointSelected",
+             "Which joint is causing you the most discomfort?", "single",
+             options=["Knee", "Elbow", "Shoulder", "Hip", "Wrist"])
+
+add_question("age_range", "Slide_03_AgeRange", "history", 2, 6, "ageRange",
+             "What is your age range?", "single",
+             options=["18–29", "30–39", "40–49", "50+"])
+
+# diagnosed_specific is condition section but appears before pain_duration logic wise, but keep.
+
+add_question("pain_duration", "Slide_04_PainDuration", "history", 3, 6, "painDuration",
+             "How long have you been experiencing {{jointSelected}} pain?", "single",
+             options=["1–3 months", "3–12 months", "1–3 years", "3+ years"])
+
+add_question("avg_pain_slider", "Slide_05_AvgPain", "history", 4, 6, "avgPainLevel",
+             "How would you rate your average pain level?", "slider",
+             range_=[1,10])
+
+add_question("worst_pain_slider", "Slide_06_WorstPain", "history", 5, 6, "worstPainLevel",
+             "How would you rate your {{jointSelected}} pain at its worst?", "slider",
+             range_=[1,10])
+
+add_question("pain_worsening", "Slide_07_PainWorsening", "history", 6, 6, "painWorsening",
+             "Has your {{jointSelected}} pain gotten worse over time?", "single",
+             options=["Yes, gradually", "Yes, quickly", "No, it's stayed the same"])
+
+# Condition section questions (6)
+add_question("diagnosed_specific", "Slide_08_DiagnosedSpecific", "condition", 1, 6, "diagnosedSpecific",
+             "Have you been diagnosed with a specific {{jointSelected}} condition?", "single",
+             options=["Yes", "No", "Not sure"],
+             logic={
+                 "on_answer": {
+                     "data_key": "diagnosedSpecific",
+                     "value": "No",
+                     "action": "skip_to",
+                     "target_id": "movement_triggers"
+                 }
+             })
+
+add_question("diagnosis_detail", "Slide_09_DiagnosisDetail", "condition", 2, 6, "diagnosisDetail",
+             "Which {{jointSelected}} condition have you been diagnosed with?", "single",
+             options=["Condition 1", "Condition 2", "Condition 3", "Other / Not Listed"],
+             visibility_condition="diagnosedSpecific == 'Yes'")
+
+add_question("movement_triggers", "Slide_10_MovementTriggers", "condition", 3, 6, "movementTriggers",
+             "Which of these movements make your {{jointSelected}} pain worse?", "multi",
+             options=["Movement 1", "Movement 2", "Movement 3", "Movement 4", "Movement 5"])
+
+add_question("prior_treatments", "Slide_11_PriorTreatments", "condition", 4, 6, "priorTreatments",
+             "Have you tried any previous {{jointSelected}} treatments?", "multi",
+             options=["Medication", "Cortisone shots", "Physical Therapy", "Surgery", "Other", "None"])
+
+add_question("treatment_effectiveness", "Slide_12_TreatmentEffectiveness", "condition", 5, 6, "treatmentEffectiveness",
+             "How effective were those {{jointSelected}} treatments?", "single",
+             options=["No improvement", "Temporary relief", "Moderate improvement"],
+             visibility_condition="priorTreatments != ['None']")
+
+add_question("surgery_recommended", "Slide_13_SurgeryRecommended", "condition", 6, 6, "surgeryRecommended",
+             "Has a doctor recommended surgery for your {{jointSelected}}?", "single",
+             options=["Yes", "No"])
+
+# Health Impact section questions (3)
+add_question("mood_impact", "Slide_14_MoodImpact", "healthImpact", 1, 3, "moodImpact",
+             "How has this {{jointSelected}} pain affected your mood?", "single",
+             options=["It's been frustrating", "It makes me feel older than I am", "It makes me anxious or stressed", "It hasn't really affected my mood"])
+
+add_question("sleep_impact", "Slide_15_SleepImpact", "healthImpact", 2, 3, "sleepImpact",
+             "Has your {{jointSelected}} pain affected your sleep?", "single",
+             options=["Yes", "No"])
+
+add_question("dream_activity", "Slide_16_DreamActivity", "healthImpact", 3, 3, "dreamActivity",
+             "If you were pain-free, what activity would you be most excited to do again?", "multi",
+             options=["Just getting around again", "Working without pain", "Playing with the kids", "Being active without pain", "Travel & Hobbies"])
+
+# Priorities section questions (3)
+add_question("non_surgical_interest", "Slide_17_NonSurgicalInterest", "priorities", 1, 3, "nonSurgicalInterest",
+             "Are you looking for a non-surgical, drug-free option for your {{jointSelected}}?", "single",
+             options=["Yes", "No"])
+
+add_question("biggest_concern", "Slide_18_BiggestConcern", "priorities", 2, 3, "biggestConcern",
+             "What’s your biggest concern about trying a new treatment?", "single",
+             options=["Cost", "Effectiveness", "Time", "Safety"])
+
+add_question("primary_priority", "Slide_19_PrimaryPriority", "priorities", 3, 3, "primaryPriority",
+             "What’s your #1 priority in solving this {{jointSelected}} pain?", "single",
+             options=["Pain relief", "Avoiding Surgery", "Returning to activity", "Long-term solution"])
+
+# Write the JSON file
+file_path = "/mnt/data/softwave_quiz_schema.json"
+with open(file_path, "w", encoding="utf-8") as f:
+    json.dump(schema, f, indent=2)
+
+file_path
