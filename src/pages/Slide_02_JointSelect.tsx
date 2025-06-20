@@ -92,7 +92,7 @@ const Slide_02_JointSelect = () => {
       {selectedJoint && (
         <div className="px-6 py-6 flex justify-end mt-8">
           <Link 
-            to="/slide_03_agerange"
+            to="/slide_03_providersearch"
             className="bg-[#0d9c95] hover:bg-[#0d9c95]/90 text-white px-8 py-3 rounded-xl font-medium transition-colors"
           >
             Next
