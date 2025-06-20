@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Search } from 'lucide-react';
 
 const Slide_04_FindingProviderPopup = () => {
   const navigate = useNavigate();
@@ -86,12 +87,12 @@ const Slide_04_FindingProviderPopup = () => {
         {/* Dark Overlay */}
         <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
         
-        {/* Main Container */}
-        <div className="bg-[#0D9488] bg-opacity-95 rounded-2xl shadow-lg w-full max-w-md p-8 mb-8 relative z-20">
-          {/* Icon Circle */}
+        {/* Main Container - Updated to match slide 5 */}
+        <div className="bg-teal-600 rounded-2xl shadow-lg w-full max-w-md p-8 mb-8 relative z-20">
+          {/* Simple White Magnifying Glass Icon */}
           <div className="flex justify-center mb-6">
             <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center shadow-lg">
-              <div className="text-white text-2xl">🔍</div>
+              <Search className="text-white" size={32} />
             </div>
           </div>
           
