@@ -27,9 +27,8 @@ const Slide_03_ZipCodeEntry = () => {
     setTimeout(() => {
       setIsChecking(false);
       console.log(`Checking providers near ZIP code: ${zipCode}`);
-      // Navigate to next step - you can replace this with the actual next route
-      // navigate('/slide_04_next');
-      alert(`Checking providers near ZIP code: ${zipCode}\nThe app would now show available providers or continue with the qualification process.`);
+      // Navigate to the finding provider popup
+      navigate('/slide_04_findingproviderpopup');
     }, 1500);
   };
 
@@ -90,7 +89,7 @@ const Slide_03_ZipCodeEntry = () => {
         </button>
       </div>
       
-      {/* Optional: Additional Information */}
+      {/* Additional Information */}
       <div className="text-white text-center text-sm opacity-70 px-6 max-w-md">
         <p>Your ZIP code helps us find Pulsewave providers in your area who can address your specific needs.</p>
       </div>
