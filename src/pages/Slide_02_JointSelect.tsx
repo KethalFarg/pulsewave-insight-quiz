@@ -48,11 +48,11 @@ const Slide_02_JointSelect = () => {
           <span className="text-white/80 text-sm font-medium">2 of 6</span>
         </div>
         
-        {/* Progress bar with 4 sections */}
+        {/* Progress bar with 4 sections - only first completed */}
         <div className="flex space-x-2 mb-2 mt-2">
           <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
-          <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
-          <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
+          <div className="flex-1 bg-white/20 rounded-full h-2"></div>
+          <div className="flex-1 bg-white/20 rounded-full h-2"></div>
           <div className="flex-1 bg-white/20 rounded-full h-2"></div>
         </div>
       </div>
