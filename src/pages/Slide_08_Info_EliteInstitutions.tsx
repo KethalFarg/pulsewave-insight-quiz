@@ -7,9 +7,8 @@ const Slide_08_Info_EliteInstitutions = () => {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    // Navigate to next slide - placeholder for now
-    console.log('Navigating to next screen');
-    // navigate('/slide_09_next'); // Replace with actual next route
+    navigate('/slide_09_diagnosedjointcondition');
+    console.log('Navigating to diagnosed joint condition screen');
   };
 
   const handleBack = () => {

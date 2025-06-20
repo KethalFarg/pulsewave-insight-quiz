@@ -17,6 +17,8 @@ const Slide_02_JointSelect = () => {
 
   const handleJointSelect = (joint: string) => {
     setSelectedJoint(joint);
+    // Store the selected joint in localStorage for later use
+    localStorage.setItem('selectedJoint', joint);
     console.log('Selected joint:', joint);
     
     // Auto-advance to next page after a short delay for visual feedback
