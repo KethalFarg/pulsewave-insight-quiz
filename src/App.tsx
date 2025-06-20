@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Slide_02_JointSelect from "./pages/Slide_02_JointSelect";
 import Slide_03_ZipCodeEntry from "./pages/Slide_03_ZipCodeEntry";
 import Slide_04_FindingProviderPopup from "./pages/Slide_04_FindingProviderPopup";
+import Slide_05_ProviderLoadingPopup from "./pages/Slide_05_ProviderLoadingPopup";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/slide_02_jointselect" element={<Slide_02_JointSelect />} />
           <Route path="/slide_03_zipcodeentry" element={<Slide_03_ZipCodeEntry />} />
           <Route path="/slide_04_findingproviderpopup" element={<Slide_04_FindingProviderPopup />} />
+          <Route path="/slide_05_providerloadingpopup" element={<Slide_05_ProviderLoadingPopup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

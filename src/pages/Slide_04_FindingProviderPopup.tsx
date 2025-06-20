@@ -8,9 +8,8 @@ const Slide_04_FindingProviderPopup = () => {
   useEffect(() => {
     // Auto-advance after 3 seconds (simulating provider search)
     const timer = setTimeout(() => {
-      // Navigate to next step - replace with actual next route when available
       console.log('Provider search complete');
-      // navigate('/slide_05_next'); // Replace with actual next route
+      navigate('/slide_05_providerloadingpopup');
     }, 3000);
 
     return () => clearTimeout(timer);
