@@ -17,46 +17,8 @@ const Slide_04_FindingProviderPopup = () => {
   }, [navigate]);
 
   return (
-    <div className="font-montserrat bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen flex flex-col items-center justify-start pt-12 px-4 relative">
-      {/* Background Logo */}
-      <div className="flex flex-col items-center justify-center mb-8">
-        <img 
-          src="https://imagedelivery.net/ye6TBwd9tSy8dGYL2VHjgg/0b98e6b6-e3f9-4251-b9e3-e82eb5f47600/public" 
-          alt="SoftWave Logo" 
-          className="h-16 w-auto mb-2"
-        />
-      </div>
-
-      {/* Dark Overlay */}
-      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
-      
-      {/* Main Container */}
-      <div className="bg-[#0D9488] bg-opacity-95 rounded-2xl shadow-lg w-full max-w-md p-8 mb-8 relative z-20">
-        {/* Icon Circle */}
-        <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center shadow-lg">
-            <div className="text-white text-2xl">🔍</div>
-          </div>
-        </div>
-        
-        {/* Heading */}
-        <h2 className="text-white text-2xl font-bold text-center mb-8">
-          Checking to see if there is a provider near you
-        </h2>
-        
-        {/* Enhanced Loading Spinner */}
-        <div className="flex justify-center items-center relative">
-          <div className="pulse-ring"></div>
-          <div className="loading-spinner"></div>
-        </div>
-      </div>
-      
-      {/* Additional Information */}
-      <div className="text-white text-center text-sm opacity-70 px-6 max-w-md relative z-20">
-        <p>Please wait while we search for qualified Pulsewave providers in your area.</p>
-      </div>
-
-      <style jsx>{`
+    <>
+      <style>{`
         .loading-spinner {
           width: 80px;
           height: 80px;
@@ -112,7 +74,46 @@ const Slide_04_FindingProviderPopup = () => {
           100% { transform: scale(0.8); opacity: 0.4; }
         }
       `}</style>
-    </div>
+      <div className="font-montserrat bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen flex flex-col items-center justify-start pt-12 px-4 relative">
+        {/* Background Logo */}
+        <div className="flex flex-col items-center justify-center mb-8">
+          <img 
+            src="https://imagedelivery.net/ye6TBwd9tSy8dGYL2VHjgg/0b98e6b6-e3f9-4251-b9e3-e82eb5f47600/public" 
+            alt="SoftWave Logo" 
+            className="h-16 w-auto mb-2"
+          />
+        </div>
+
+        {/* Dark Overlay */}
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+        
+        {/* Main Container */}
+        <div className="bg-[#0D9488] bg-opacity-95 rounded-2xl shadow-lg w-full max-w-md p-8 mb-8 relative z-20">
+          {/* Icon Circle */}
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center shadow-lg">
+              <div className="text-white text-2xl">🔍</div>
+            </div>
+          </div>
+          
+          {/* Heading */}
+          <h2 className="text-white text-2xl font-bold text-center mb-8">
+            Checking to see if there is a provider near you
+          </h2>
+          
+          {/* Enhanced Loading Spinner */}
+          <div className="flex justify-center items-center relative">
+            <div className="pulse-ring"></div>
+            <div className="loading-spinner"></div>
+          </div>
+        </div>
+        
+        {/* Additional Information */}
+        <div className="text-white text-center text-sm opacity-70 px-6 max-w-md relative z-20">
+          <p>Please wait while we search for qualified Pulsewave providers in your area.</p>
+        </div>
+      </div>
+    </>
   );
 };
 
