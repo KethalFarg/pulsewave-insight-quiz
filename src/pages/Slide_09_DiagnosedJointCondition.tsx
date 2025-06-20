@@ -1,38 +1,46 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 const Slide_09_DiagnosedJointCondition = () => {
+  const [selectedCondition, setSelectedCondition] = useState<string>('');
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-  const handleBack = () => {
-    navigate('/slide_08_info_eliteinstitutions');
-  };
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
-  const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
-    localStorage.setItem('diagnosedCondition', option);
-    console.log('Diagnosed condition selected:', option);
-    // Navigate to next slide after selection
-    setTimeout(() => {
-      // navigate('/slide_10_next'); // Replace with actual next route
-      console.log('Would navigate to next slide');
-    }, 500);
-  };
-
-  // Get the selected joint from localStorage for dynamic text
-  const selectedJoint = localStorage.getItem('selectedJoint') || 'joint';
-
-  const options = [
+  const conditionOptions = [
     { value: 'yes', label: 'Yes' },
     { value: 'no', label: 'No' },
     { value: 'not_sure', label: 'Not sure' }
   ];
 
+  const handleConditionSelect = (condition: string) => {
+    setSelectedCondition(condition);
+    localStorage.setItem('diagnosedCondition', condition);
+    console.log('Selected condition:', condition);
+    
+    // Auto-advance to next page after a short delay for visual feedback
+    setTimeout(() => {
+      // Navigate to next slide or complete the quiz
+      console.log('Quiz completed or navigate to next slide');
+    }, 300);
+  };
+
+  const handleBack = () => {
+    navigate('/slide_08_info_eliteinstitutions');
+    console.log('Navigating back to elite institutions screen');
+  };
+
+  const selectedJoint = localStorage.getItem('selectedJoint') || 'knee';
+
   return (
-    <div className="w-full max-w-sm mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen">
+    <div className={`w-full max-w-sm mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen transition-all duration-700 ease-out ${
+      isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+    }`}>
       {/* Header Section */}
       <div className="w-full px-4 py-6 bg-transparent">
         {/* Top row with back button, section title, and progress */}
@@ -40,7 +48,7 @@ const Slide_09_DiagnosedJointCondition = () => {
           {/* Back button */}
           <button 
             onClick={handleBack}
-            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
           >
             <ArrowLeft className="text-white text-sm" size={16} />
           </button>
@@ -72,21 +80,7 @@ const Slide_09_DiagnosedJointCondition = () => {
       </div>
 
       {/* Answer Options */}
-      <div className="px-6 flex flex-col items-end space-y-4 relative mt-[10%]">
-        {options.map((option) => (
-          <button
-            key={option.value}
-            onClick={() => handleOptionSelect(option.value)}
-            className={`w-1/2 h-14 backdrop-blur-md border rounded-xl text-white text-lg font-medium transition-all duration-200 active:scale-98 ${
-              selectedOption === option.value
-                ? 'bg-white/30 border-white/40'
-                : 'bg-white/10 border-white/20 hover:bg-white/20'
-            }`}
-          >
-            {option.label}
-          </button>
-        ))}
-        
+      <div className="px-6 flex relative" style={{ marginTop: '10%' }}>
         {/* Image positioned directly to the left of buttons */}
         <div className="absolute left-0 top-1/2 transform -translate-y-1/2">
           <img 
@@ -94,6 +88,23 @@ const Slide_09_DiagnosedJointCondition = () => {
             alt="Medical illustration" 
             className="w-38 h-auto object-contain"
           />
+        </div>
+        
+        {/* Right side - Buttons */}
+        <div className="w-1/2 flex flex-col items-end space-y-4 ml-auto">
+          {conditionOptions.map((condition) => (
+            <button
+              key={condition.value}
+              onClick={() => handleConditionSelect(condition.value)}
+              className={`w-full h-14 backdrop-blur-md border rounded-xl text-white text-lg font-medium transition-all duration-200 active:scale-98 ${
+                selectedCondition === condition.value
+                  ? 'bg-white/30 border-white/40'
+                  : 'bg-white/10 border-white/20 hover:bg-white/20'
+              }`}
+            >
+              {condition.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
