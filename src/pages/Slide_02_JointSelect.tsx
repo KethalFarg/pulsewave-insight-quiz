@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 const Slide_02_JointSelect = () => {
   const [selectedJoint, setSelectedJoint] = useState<string>('');
+  const navigate = useNavigate();
 
   const jointOptions = [
     { value: 'knee', label: 'Knee' },
@@ -17,6 +18,11 @@ const Slide_02_JointSelect = () => {
   const handleJointSelect = (joint: string) => {
     setSelectedJoint(joint);
     console.log('Selected joint:', joint);
+    
+    // Auto-advance to next page after a short delay for visual feedback
+    setTimeout(() => {
+      navigate('/slide_03_zipcodeentry');
+    }, 300);
   };
 
   return (
@@ -87,18 +93,6 @@ const Slide_02_JointSelect = () => {
           ))}
         </div>
       </div>
-
-      {/* Navigation Footer */}
-      {selectedJoint && (
-        <div className="px-6 py-6 flex justify-end mt-8">
-          <Link 
-            to="/slide_03_zipcodeentry"
-            className="bg-[#0d9c95] hover:bg-[#0d9c95]/90 text-white px-8 py-3 rounded-xl font-medium transition-colors"
-          >
-            Next
-          </Link>
-        </div>
-      )}
     </div>
   );
 };
