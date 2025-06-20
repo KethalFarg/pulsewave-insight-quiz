@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,9 +5,7 @@ const Slide_05_ProviderLoadingPopup = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    // Navigate to next step - replace with actual next route when available
-    console.log('User clicked continue');
-    // navigate('/slide_06_next'); // Replace with actual next route
+    navigate('/slide_06_info_over1million');
   };
 
   return (
