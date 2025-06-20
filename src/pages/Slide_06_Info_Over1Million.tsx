@@ -7,17 +7,13 @@ const Slide_06_Info_Over1Million = () => {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    // Check if user selected male gender (this would normally come from state/context)
-    // For now, defaulting to male age range - in a full implementation, 
-    // this would check the actual gender selection from earlier in the flow
+    // Check the selected gender from localStorage
     const selectedGender = localStorage.getItem('selectedGender') || 'male';
     
     if (selectedGender === 'male') {
       navigate('/slide_07_agerange_male');
     } else {
-      // Navigate to female age range slide when created
-      console.log('Would navigate to female age range slide');
-      // navigate('/slide_07_agerange_female');
+      navigate('/slide_07_agerange_female');
     }
     
     console.log('Navigating to next screen for gender:', selectedGender);
