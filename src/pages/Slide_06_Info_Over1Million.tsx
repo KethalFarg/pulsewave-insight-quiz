@@ -1,15 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Play } from 'lucide-react';
 
 const Slide_06_Info_Over1Million = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const handleNext = () => {
     // Check the selected gender from localStorage
@@ -29,9 +24,7 @@ const Slide_06_Info_Over1Million = () => {
   };
 
   return (
-    <div className={`font-montserrat bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen transition-all duration-700 ease-out ${
-      isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-    }`}>
+    <div className="font-montserrat bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
       <div className="max-w-md mx-auto px-4 py-6 relative h-[100vh] flex flex-col">
         {/* Top Header Banner */}
         <div className="bg-gradient-to-r from-[#323743] to-[#0D9C95] rounded-b-3xl pt-6 pb-6 px-4 -mx-4 -mt-6 relative">

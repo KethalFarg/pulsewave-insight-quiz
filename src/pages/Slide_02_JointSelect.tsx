@@ -1,16 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 const Slide_02_JointSelect = () => {
   const [selectedJoint, setSelectedJoint] = useState<string>('');
-  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const jointOptions = [
     { value: 'knee', label: 'Knee' },
@@ -33,9 +28,7 @@ const Slide_02_JointSelect = () => {
   };
 
   return (
-    <div className={`w-full max-w-sm mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen transition-all duration-700 ease-out ${
-      isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-    }`}>
+    <div className="w-full max-w-sm mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen">
       {/* Header Section */}
       <div className="w-full px-4 py-6 bg-transparent">
         {/* Top row with back button, section title, and progress */}
