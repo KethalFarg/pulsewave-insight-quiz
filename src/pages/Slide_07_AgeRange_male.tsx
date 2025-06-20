@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -13,11 +12,11 @@ const Slide_07_AgeRange_male = () => {
 
   const handleAgeSelect = (ageRange: string) => {
     setSelectedAge(ageRange);
+    localStorage.setItem('selectedAge', ageRange);
     console.log('Age range selected:', ageRange);
     // Navigate to next slide after selection
     setTimeout(() => {
-      // navigate('/slide_08_next'); // Replace with actual next route
-      console.log('Would navigate to next slide');
+      navigate('/slide_08_info_eliteinstitutions');
     }, 500);
   };
 
