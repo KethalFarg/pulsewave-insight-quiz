@@ -13,6 +13,8 @@ const Index = () => {
 
   const handleGenderSelect = (gender: 'male' | 'female') => {
     setSelectedGender(gender);
+    // Store gender selection in localStorage for later use
+    localStorage.setItem('selectedGender', gender);
     console.log('Gender selected:', gender);
     // Navigate to joint selection after gender is selected
     setTimeout(() => {

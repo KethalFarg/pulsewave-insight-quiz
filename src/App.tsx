@@ -11,6 +11,7 @@ import Slide_03_ZipCodeEntry from "./pages/Slide_03_ZipCodeEntry";
 import Slide_04_FindingProviderPopup from "./pages/Slide_04_FindingProviderPopup";
 import Slide_05_ProviderLoadingPopup from "./pages/Slide_05_ProviderLoadingPopup";
 import Slide_06_Info_Over1Million from "./pages/Slide_06_Info_Over1Million";
+import Slide_07_AgeRange_male from "./pages/Slide_07_AgeRange_male";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/slide_04_findingproviderpopup" element={<Slide_04_FindingProviderPopup />} />
           <Route path="/slide_05_providerloadingpopup" element={<Slide_05_ProviderLoadingPopup />} />
           <Route path="/slide_06_info_over1million" element={<Slide_06_Info_Over1Million />} />
+          <Route path="/slide_07_agerange_male" element={<Slide_07_AgeRange_male />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
