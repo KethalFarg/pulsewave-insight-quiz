@@ -76,10 +76,16 @@ export default {
 					100: '#F8BBD9',
 					500: '#E91E63',
 					600: '#D81B60'
-				}
+				},
+				'softwave-blue': '#0B3B6B',
+				'softwave-pink': '#FF6B99',
+				'softwave-gray': '#F5F6F8',
+				'softwave-yellow': '#FFD54F'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif']
+				sans: ['Inter', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
+				script: ['"Dancing Script"', 'cursive']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
