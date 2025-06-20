@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -40,9 +41,9 @@ const Slide_07_AgeRange_female = () => {
   ];
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen">
-      {/* Header Section */}
-      <div className="w-full px-4 py-6 bg-transparent">
+    <div className="w-full max-w-sm lg:max-w-4xl mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen">
+      {/* Header Section - Extended for desktop */}
+      <div className="w-full px-4 lg:px-8 py-6 bg-transparent">
         {/* Top row with back button, section title, and progress */}
         <div className="flex items-center justify-between mb-6">
           {/* Back button */}
@@ -54,14 +55,14 @@ const Slide_07_AgeRange_female = () => {
           </button>
           
           {/* Section title */}
-          <h1 className="text-white text-lg font-semibold">History</h1>
+          <h1 className="text-white text-lg lg:text-xl font-semibold">History</h1>
           
           {/* Progress indicator */}
-          <span className="text-white/80 text-sm font-medium">3 of 6</span>
+          <span className="text-white/80 text-sm lg:text-base font-medium">3 of 6</span>
         </div>
         
         {/* Progress bar with 4 sections */}
-        <div className="flex space-x-2 mb-2 mt-2">
+        <div className="flex space-x-2 mb-2 mt-2 max-w-md lg:max-w-lg mx-auto">
           <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
           <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
           <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
@@ -70,17 +71,17 @@ const Slide_07_AgeRange_female = () => {
       </div>
 
       {/* Question Section */}
-      <div className="px-6 py-8 text-center">
-        <h2 className="text-white text-2xl font-medium leading-8 mb-3">
+      <div className="px-6 lg:px-8 py-8 text-center">
+        <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-medium leading-8 mb-3">
           What is your age range?
         </h2>
-        <p className="text-white/80 text-base leading-6">
+        <p className="text-white/80 text-base lg:text-lg leading-6 max-w-2xl mx-auto">
           Your age helps us estimate your treatment time and recovery success
         </p>
       </div>
 
-      {/* Age Options Grid */}
-      <div className="px-6 grid grid-cols-2 gap-4">
+      {/* Age Options Grid - Responsive grid for desktop */}
+      <div className="px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
         {ageOptions.map((option) => (
           <button
             key={option.range}
@@ -91,15 +92,15 @@ const Slide_07_AgeRange_female = () => {
                 : 'bg-white/90'
             }`}
           >
-            <div className="w-full h-32 bg-gradient-to-b from-gray-100 to-gray-200">
+            <div className="w-full h-32 lg:h-40 bg-gradient-to-b from-gray-100 to-gray-200">
               <img 
                 src={option.image} 
                 alt={`${option.range} age range`} 
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="p-3 bg-white">
-              <span className="text-gray-800 text-lg font-semibold">{option.range}</span>
+            <div className="p-3 lg:p-4 bg-white">
+              <span className="text-gray-800 text-lg lg:text-xl font-semibold">{option.range}</span>
             </div>
           </button>
         ))}
