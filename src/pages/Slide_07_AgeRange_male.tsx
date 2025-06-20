@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -41,73 +40,69 @@ const Slide_07_AgeRange_male = () => {
   ];
 
   return (
-    <div className="font-montserrat bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen">
-      <div className="max-w-md lg:max-w-2xl xl:max-w-4xl mx-auto px-4 lg:px-8 py-6 relative min-h-screen flex flex-col">
-        {/* Header Section */}
-        <div className="w-full py-6 bg-transparent">
-          {/* Top row with back button, section title, and progress */}
-          <div className="flex items-center justify-between mb-6">
-            {/* Back button */}
-            <button 
-              onClick={handleBack}
-              className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
-            >
-              <ArrowLeft className="text-white text-sm" size={16} />
-            </button>
-            
-            {/* Section title */}
-            <h1 className="text-white text-lg lg:text-xl font-semibold">History</h1>
-            
-            {/* Progress indicator */}
-            <span className="text-white/80 text-sm lg:text-base font-medium">3 of 6</span>
-          </div>
+    <div className="w-full max-w-sm mx-auto bg-gradient-to-b from-[#323743] to-[#0d9c95] min-h-screen">
+      {/* Header Section */}
+      <div className="w-full px-4 py-6 bg-transparent">
+        {/* Top row with back button, section title, and progress */}
+        <div className="flex items-center justify-between mb-6">
+          {/* Back button */}
+          <button 
+            onClick={handleBack}
+            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+          >
+            <ArrowLeft className="text-white text-sm" size={16} />
+          </button>
           
-          {/* Progress bar with 4 sections */}
-          <div className="flex space-x-2 mb-2 mt-2 max-w-md lg:max-w-lg mx-auto">
-            <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
-            <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
-            <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
-            <div className="flex-1 bg-white/20 rounded-full h-2"></div>
-          </div>
+          {/* Section title */}
+          <h1 className="text-white text-lg font-semibold">History</h1>
+          
+          {/* Progress indicator */}
+          <span className="text-white/80 text-sm font-medium">3 of 6</span>
         </div>
+        
+        {/* Progress bar with 4 sections */}
+        <div className="flex space-x-2 mb-2 mt-2">
+          <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
+          <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
+          <div className="flex-1 bg-[#FECA35] rounded-full h-2"></div>
+          <div className="flex-1 bg-white/20 rounded-full h-2"></div>
+        </div>
+      </div>
 
-        {/* Question Section */}
-        <div className="py-8 text-center">
-          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-medium leading-8 mb-3">
-            What is your age range?
-          </h2>
-          <p className="text-white/80 text-base lg:text-lg leading-6 max-w-2xl mx-auto">
-            Your age helps us estimate your treatment time and recovery success
-          </p>
-        </div>
+      {/* Question Section */}
+      <div className="px-6 py-8 text-center">
+        <h2 className="text-white text-2xl font-medium leading-8 mb-3">
+          What is your age range?
+        </h2>
+        <p className="text-white/80 text-base leading-6">
+          Your age helps us estimate your treatment time and recovery success
+        </p>
+      </div>
 
-        {/* Age Options Grid */}
-        <div className="flex-grow flex items-center justify-center pb-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full max-w-6xl">
-            {ageOptions.map((option) => (
-              <button
-                key={option.range}
-                onClick={() => handleAgeSelect(option.range)}
-                className={`relative backdrop-blur-md border border-gray-200/50 rounded-2xl hover:bg-white transition-all duration-200 active:scale-98 overflow-hidden shadow-lg ${
-                  selectedAge === option.range 
-                    ? 'bg-white ring-4 ring-white/50' 
-                    : 'bg-white/90'
-                }`}
-              >
-                <div className="w-full h-32 lg:h-40 bg-gradient-to-b from-gray-100 to-gray-200">
-                  <img 
-                    src={option.image} 
-                    alt={`${option.range} age range`} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-3 lg:p-4 bg-white">
-                  <span className="text-gray-800 text-lg lg:text-xl font-semibold">{option.range}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* Age Options Grid */}
+      <div className="px-6 grid grid-cols-2 gap-4">
+        {ageOptions.map((option) => (
+          <button
+            key={option.range}
+            onClick={() => handleAgeSelect(option.range)}
+            className={`relative backdrop-blur-md border border-gray-200/50 rounded-2xl hover:bg-white transition-all duration-200 active:scale-98 overflow-hidden shadow-lg ${
+              selectedAge === option.range 
+                ? 'bg-white ring-4 ring-white/50' 
+                : 'bg-white/90'
+            }`}
+          >
+            <div className="w-full h-32 bg-gradient-to-b from-gray-100 to-gray-200">
+              <img 
+                src={option.image} 
+                alt={`${option.range} age range`} 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-3 bg-white">
+              <span className="text-gray-800 text-lg font-semibold">{option.range}</span>
+            </div>
+          </button>
+        ))}
       </div>
     </div>
   );
